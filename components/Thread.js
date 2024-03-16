@@ -31,6 +31,7 @@ const SentimentBubbles = () => {
 const ThreadChat = ({ message, user }) => {
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false)
+    // const { user } = useContext(UserContext);
 
     const [votes, setVotes] = useState(0);
   
@@ -52,7 +53,7 @@ const ThreadChat = ({ message, user }) => {
         <img src='/favicon.ico' width={30}></img>
         </div>
         <div className='thread-chat-subcontainer'>
-        <span className='thread-chat-name'>lauren</span>
+        <span className='thread-chat-name'>{user && user}</span>
         <div className='thread-chat'>
         <p>{message}</p>
         <div>
@@ -154,7 +155,7 @@ const handleInputChange = (e) => {
       </div>
       <div className='thread-messages-container'>
           {messages.map((message, i) => (
-            message && <ThreadChat key={message.id} message={message.content} />
+            message && <ThreadChat key={message.id} message={message.content} user={user.id} />
           ))}
       </div>
       {/* <div className={chatHistory.length < 1 ? 'search-form-initial' : 'search-form'}> */}

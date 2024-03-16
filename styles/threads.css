@@ -13,7 +13,17 @@
     text-align: center;
 }
 
+.threads-headers > div {
+    width: 100%;
+}
+
+
+
 .threads-vertical-grid {
    display: grid;
    gap:10px;
+}
+
+.threads-vertical-grid > a {
+    width: 100%;
 }
