@@ -1,0 +1,106 @@
+.discover-container {
+    margin-left: 250px;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 0px 100px 0px;
+}
+
+.discover-articles-grid {
+
+}
+
+.discover-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    gap:10px;
+    border-bottom: 1px solid white;
+    padding: 2rem 0rem;
+}
+
+.discover-grid-link {
+    width: 50%;
+    display: flex;
+    margin: 0 auto;
+}
+.discover-article-item {
+    display: flex;
+    text-align: left;
+    border-bottom: 1px solid rgb(80, 80, 80);
+    /* width: 50%; */
+    margin: 0 auto;
+    padding: 1rem 1rem;
+}
+
+.discover-article-item .discover-article-img-container img {
+    width: 75px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.discover-article-img-container {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.discover-article-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 0.9rem;
+}
+
+.discover-article-stats div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(200, 200, 200);
+}
+
+.discover-article-content-container h4, .discover-article-content-container h6 {
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
+.discover-article-content-container h4 {
+    transition: 0.2s ease all;
+}
+
+.discover-article-content-container h6 {
+    font-weight: 400;
+}
+
+.discover-grid-link:hover .discover-article-content-container h4 {
+    color: #007bff;
+}
+
+
+
+
+/* Discover Thread */
+
+.discover-thread-container {
+    margin-left:250px;
+    padding: 10px 2rem 50px 2rem;
+}
+
+.discover-thread-container {
+    line-height: 3vh;
+}
+
+.discover-link-container {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.discover-link-container div {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}

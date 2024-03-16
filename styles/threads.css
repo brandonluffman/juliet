@@ -1,0 +1,19 @@
+.threads-container {
+    margin-left: 250px;
+    text-align: center;
+}
+
+.threads-headers {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.threads-headers h4 {
+    text-align: center;
+}
+
+.threads-vertical-grid {
+   display: grid;
+   gap:10px;
+}

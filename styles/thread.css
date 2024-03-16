@@ -1,0 +1,170 @@
+.thread-container {
+    margin-left: 250px;
+    text-align: center;
+}
+
+.thread-container h2 {
+    text-transform: capitalize;
+    font-size: 2rem;
+}
+
+.thread-container h6 {
+    margin: 0rem;
+    margin-top: 1rem;
+    color: #0079ff;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+
+}
+
+.thread-summary-container {
+    /* border-bottom: 2px solid white; */
+    padding: 1rem;
+    width: 75%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.thread-messages-container {
+    border-top: 1px solid rgb(100, 100, 100);
+    /* border-bottom: 1px solid rgb(100, 100, 100); */
+    width: 100%;
+    padding: 0rem;
+    text-align: center;
+    margin: 0;
+}
+
+.thread-chat-container {
+    display: flex;
+    width: 100%;
+    align-items:flex-start;
+    background-color: rgb(20,20,20);
+    padding: 1rem;
+    border: 1px solid black;
+    width: 100%;
+}
+
+.thread-chat-subcontainer {
+    text-align: left;
+    width: 100%;
+}
+
+.thread-chat-img-container {
+    display: flex;
+    align-items: top !important;
+    min-width: 50px;
+}
+
+.thread-chat {
+    /* background-color: rgb(20,20,20);
+    padding: 1rem;
+    border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    text-align: left;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.thread-chat span {
+    font-weight: 700;
+    color: white;
+    /* background-color: white; */
+}
+
+.thread-chat-reply {
+    font-size: 0.8rem;
+}
+
+.red-heart {
+    background-color: red;
+}
+
+.thread-chat div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+}
+
+.thread-chat-name {
+    font-weight: bold;
+    color: rgb(150, 150, 150);
+    margin-bottom: 0.5rem;
+}
+
+.thread-chat-date {
+    font-weight: 100;
+    font-size: 0.8rem;
+    margin-right: 2rem;
+}
+.grey-vote {
+    color: white;
+}
+
+.green-vote {
+    color: rgb(47, 220, 47);
+}
+
+.red-vote {
+    color: red;
+}
+
+
+.thread-chat button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    /* margin-right: 1rem; */
+}
+
+.thread-chat button:nth-of-type(2) {
+    margin-right: 0.5rem;
+}
+
+.thread-stats-container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sentiment */
+
+.sentiment-bubbles-container {
+    /* display: flex;
+    justify-content: space-around;
+    align-items: center; */
+    /* padding: 1rem; */
+    width: 50%;
+    border: 1px solid rgb(50, 50, 50);
+}
+
+.sentiment-bubbles {
+    display: inline-flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+
+.sentiment-bubble {
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.positive {
+    background-color: green;
+}
+
+.neutral {
+    background-color: rgb(167, 164, 23);
+}
+
+.negative {
+    background-color: rgb(255, 144, 79);
+}
+
+/* */

@@ -1,9 +1,23 @@
+@import url('https://fonts.cdnfonts.com/css/gotham-6');
+
 html,
 body {
+  scroll-behavior: smooth;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    /* overflow: hidden; */
+}
+
+textarea {
+  font-family: Helvetica Neue;
+  resize: none;
+  overflow: hidden;
+}
+
+p {
+  margin:0;
 }
 
 a {
@@ -15,12 +29,41 @@ a {
   box-sizing: border-box;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+pre {
+  white-space: wrap;
+  font-family: Helvetica Neue;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 20px;
+  color: black;
+  font-weight: bold;
+  box-shadow: 1px 1px 8px rgba(255,255,255,0.2);
+  transition: 0.2s ease all;
+  border:1px solid #007bff
+}
+
+.btn:hover {
+  border: 1px solid #007bff;
+  background-color: black;
+  color: #007bff;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
     color: white;
-    background: black;
+    background-color: rgb(10,10,10);
   }
 }

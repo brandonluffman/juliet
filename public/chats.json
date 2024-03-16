@@ -1,0 +1,100 @@
+[
+  {
+    "id": "de867c6a-1fb8-4607-9606-f852d3525227",
+    "name": "Chat 1",
+    "messages": [
+      {
+        "query": "hello",
+        "response": "Hello! How can I assist you today?"
+      },
+      {
+        "query": "Whats 4 times 4",
+        "response": "4 times 4 equals 16."
+      },
+      {
+        "query": "whats the definition of real",
+        "response": "The definition of \"real\" refers to something that actually exists in reality, as opposed to something that is fictional or imaginary. It can also refer to something genuine, authentic, or true."
+      },
+      {
+        "query": "Whats 3x3",
+        "response": "3x3 is equal to 9."
+      },
+      {
+        "query": "whats 3x4",
+        "response": "3 x 4 = 12"
+      },
+      {
+        "query": "3x9",
+        "response": "27"
+      },
+      {
+        "query": "3x2",
+        "response": "6"
+      },
+      {
+        "query": "the definition of animation",
+        "response": "Animation is the technique of creating the illusion of motion and change by rapidly displaying a sequence of static images or frames. This can be done using various methods such as hand-drawn animation, computer-generated imagery, or stop-motion animation. Animation is commonly used in films, television shows, video games, and advertisements to bring characters and scenes to life. It is a popular form of visual storytelling that can be both entertaining and educational."
+      }
+    ]
+  },
+  {
+    "id": "9c348f71-324d-43f6-9429-bdcabc6e0a82",
+    "name": "Chat 2",
+    "messages": [
+      {
+        "query": "Hey!",
+        "response": "Hello! How can I help you today?"
+      },
+      {
+        "query": "how large is a polar bear",
+        "response": "A polar bear can grow up to 10 feet (3 meters) in length and weigh between 900 to 1,600 pounds (400 to 700 kilograms)."
+      },
+      {
+        "query": "What about a grizzly",
+        "response": "A grizzly bear is a large, powerful bear species found in North America. They are known for their distinctive hump on their shoulders, large claws, and a typically brown fur color. Grizzly bears are formidable predators and can be dangerous if provoked or if their territory is encroached upon. They primarily feed on plants, berries, fish, insects, and occasionally small mammals."
+      },
+      {
+        "query": "What was my last message",
+        "response": "I'm sorry, but I cannot remember the content of your last message."
+      },
+      {
+        "query": "Can you search reddit threads if I give you a link",
+        "response": "I'm unable to browse external websites, including Reddit. However, you can share the link with me and provide me with the specific information or question you're looking for, and I can try to provide a summary or answer based on the information you provide."
+      },
+      {
+        "query": "3x3",
+        "response": "The result of multiplying a 3x3 matrix by another 3x3 matrix is a new 3x3 matrix. This can be done by multiplying each element in the first matrix by its corresponding element in the second matrix, and then summing the products for each element in the resulting matrix.\n\nFor example, let's say we have two 3x3 matrices:\n\nMatrix A:  \n1 2 3  \n4 5 6  \n7 8 9  \n\nMatrix B:  \n9 8 7  \n6 5 4  \n3 2 1  \n\nTo multiply these two matrices, we perform the following calculations:\n\n1*9 + 2*6 + 3*3 = 9 + 12 + 9 = 30  \n1*8 + 2*5 + 3*2 = 8 + 10 + 6 = 24  \n1*7 + 2*4 + 3*1 = 7 + 8 + 3 = 18  \n\n4*9 + 5*6 + 6*3 = 36 + 30 + 18 = 84  \n4*8 + 5*5 + 6*2 = 32 + 25 + 12 = 69  \n4*7 + 5*4 + 6*1 = 28 + 20 + 6 = 54  \n\n7*9 + 8*6 + 9*3 = 63 + 48 + 27 = 138  \n7*8 + 8*5 + 9*2 = 56 + 40 + 18 = 114  \n7*7 + 8*4 + 9*1 = 49 + 32 + 9 = 90  \n\nTherefore, the resulting 3x3 matrix from the multiplication of Matrix A and Matrix B is:\n\n30 24 18  \n84 69 54  \n138 114 90"
+      }
+    ]
+  },
+  {
+    "id": "52d04d5d-36ff-4820-a0c6-1c25d6d806b9",
+    "name": "Chat 3",
+    "messages": [
+      {
+        "query": "hello",
+        "response": "Hello! How can I assist you today?"
+      }
+    ]
+  },
+  {
+    "id": "0ac54a88-e1d0-4fae-91b9-938574e92b9a",
+    "name": "Chat 4",
+    "messages": [
+      {
+        "query": "weight of a panda bear",
+        "response": "An adult panda bear can weigh on average between 220 to 330 pounds (100 to 150 kilograms)."
+      }
+    ]
+  },
+  {
+    "id": "2eedba43-8f4b-4bf6-90bb-6fe59f4ef656",
+    "name": "Chat 5",
+    "messages": [
+      {
+        "query": "hello",
+        "response": "Hello! How can I assist you today?"
+      }
+    ]
+  }
+]

@@ -1,0 +1,203 @@
+.chat-container {
+    height:100vh;
+    display: flex;
+    align-items: center;
+    /* text-align: center; */
+    width:100%;
+    justify-content: center;
+    padding-top:5rem;
+    font-family: 'Montserrat', 'sans-serif'  !important;
+}
+
+.chat-inbox-container {
+    height:100%;
+    width:20%;
+    background-color: rgb(20, 20, 20) !important;
+    color:white;
+    /* border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px; */
+    overflow-y: scroll;
+}
+.chat-messages-container {
+    background-color: rgb(20, 20, 20);
+    height:100%;
+    width:80%;
+    position: relative;
+    /* padding:0rem 1rem; */
+    overflow-y: scroll;
+    padding-bottom:6rem;
+    border-left:1px solid rgb(40, 40, 40);
+    font-family: 'Helvetica Neue', sans serif;
+}
+.chat-messages-form {
+    position:fixed;
+    bottom:0;
+    width:inherit;
+    background-color: rgb(20, 20, 20);
+    height:100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top:1px solid rgba(40, 40, 40, 0.5);
+    box-shadow:1px 4px 20px rgba(20, 20, 20, 0.3);
+}
+.chat-messages-input {
+    width:90%;
+    height:50px;
+    border-radius: 40px;
+    padding: 0rem 1rem;
+    background-color: white;
+    border:1px solid rgb(40, 40, 40);
+    color:black;
+    font-size:1.05rem;
+}
+.chat-messages-input:focus {
+    outline: none;
+}
+.chat-inbox-card {
+    /* display: flex; */
+    background-color: rgb(20, 20, 20);
+    /* border-radius: 20px; */
+    color:rgb(255, 255, 255);
+    width:100%;
+    border-bottom:1px solid rgb(45, 45, 45);
+    padding:0.5rem 0.3rem;
+    border-top: 1px solid rgb(45, 45, 45);
+}
+
+.chat-messages-message {
+    background-color:#2294fb;
+    color:rgb(250, 250, 250);
+    max-width:500px;
+    border-radius:50px;
+    padding:1rem;
+    font-size:1rem;
+    text-align: left;
+
+}
+.chat-messages-response {
+    background-color: rgb(40, 40, 40);
+    color:rgb(255, 255, 255);
+    width:700px;
+    border-radius:30px;
+    padding:1rem;
+    font-size:1rem;
+    box-shadow: 1px 4px 8px rgba(20,20,20,0.2);
+}
+.chat-messages-message-time {
+    text-align: center;
+    margin:1rem 0rem;
+    font-size:0.8rem;
+}
+.chat-messages-message-container, .chat-messages-response-container {
+    display: flex;
+    align-items: center;
+    margin:1rem 0rem;
+}
+.chat-messages-message-container {
+    padding-right:1rem;
+    justify-content: right;
+    margin: 1rem 0rem 0.2rem 0rem;
+}
+.chat-messages-response-container {
+    padding-left:1rem;
+    justify-content: left;
+}
+.chat-inbox-card-profile {
+    width:auto;
+}
+.chat-inbox-card-title {
+    padding:0rem 0.5rem;
+}
+
+.chat-inbox-card-time {
+    font-size:0.8rem;
+    display: flex;
+    justify-content: right;
+}
+
+.chat-inbox-card-time > p {
+    margin:0;
+}
+
+.chat-inbox-card-profile-picture {
+    border-radius: 50%;
+}
+
+.new-chat-button-div {
+    justify-content: right;
+    text-align: right;
+    display: flex;
+}
+
+.new-chat-button {
+    border-radius:30px;
+    background-color: white;
+    border:none;
+    box-shadow:1px 4px 12px rgba(0,0,0,0.3);
+    margin:1.5rem 1rem 1rem 1rem;
+    color:black;
+    padding:0.6rem 1rem;
+    cursor:pointer;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    background-color: #2294fb;
+    color:white;
+}
+
+.chat-inbox-card-title-header {
+    font-size:1rem;
+}
+
+.chat-inbox-card-title-subheader {
+    font-size:0.8rem;
+    font-weight:400;
+
+}
+.chat-messages-message-profile {
+    border-radius: 50%;
+    margin-left:0.3rem;
+}
+.chat-message-delivered {
+    justify-content: right;
+    text-align: right;
+    width:100%;
+    display: flex;
+    float:right;
+    position: relative;
+    margin-right:5.1rem;
+    margin-bottom:0.5rem;
+    font-size:0.9rem;
+    color:rgb(100,100,100);
+    margin-top: 0.2rem;
+}
+.chat-inbox-header {
+    padding-left:1rem;
+    margin-bottom:1rem;
+    color:white;
+}
+
+.chat-messages-send-button {
+    background-color: transparent;
+    color:rgb(255, 255, 255);
+    border:none;
+    background-color: #2294fb;
+    padding:0.85rem 1rem;
+    border-radius: 30px;
+    font-weight:700;
+    cursor:pointer;
+    position: absolute;
+    top:28px;
+    right:61px;
+}
+
+.chat-inbox {
+    background-color: white !important;
+    height:max-content;
+}
+
+.plus-icon {
+    margin-left:0.5rem;
+    font-size:1.1rem;
+}
