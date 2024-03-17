@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext, useCallback } from 'react';
 import { BsArrowRight, BsCopy, BsDot, BsGoogle, BsOpticalAudio, BsQuestion, BsQuestionCircle, BsReddit, BsYoutube } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 import { supabase } from '../utils/supabaseClient';
@@ -17,6 +17,7 @@ const Search = ({ setChats }) => {
   const router = useRouter();
   const { user, logout } = useContext(UserContext);
   const { chatId } = router.query;
+
 
   useEffect(() => {
     if (chatId && user) {
@@ -37,7 +38,7 @@ const Search = ({ setChats }) => {
   }, [chatId, user]);
 
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     console.log('In Handle Submit');
     e.preventDefault();
     if (query.trim()) {
@@ -57,7 +58,8 @@ const Search = ({ setChats }) => {
   
         currentChatId = newChat.id;
         setChats((prevChats) => [...prevChats, newChat]);
-        // setChatHistory(newChat.messages)
+        setChatHistory(newChat.messages)
+
         router.push(`/chat/${currentChatId}`);
       }
   
@@ -169,12 +171,12 @@ const Search = ({ setChats }) => {
                           </div>
                         )}
                              {data!=null && <pre>{JSON.stringify(data.message)}</pre>}
-                            <div>
+                            {/* <div>
                               <AiFillSound />
                               <BsCopy />
                             <FaRegPlayCircle />
                             <AiOutlineDislike />
-                            </div>
+                            </div> */}
                     </p>
                   </div>
                 </div>
@@ -431,3 +433,4 @@ export default Search;
   //     setQuery(''); // Clear the input field
   //   }
   // };
+
