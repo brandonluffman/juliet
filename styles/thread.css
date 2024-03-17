@@ -6,6 +6,7 @@
 .thread-container h2 {
     text-transform: capitalize;
     font-size: 2rem;
+    margin: 0.5rem 0rem 1rem 0rem;
 }
 
 .thread-container h6 {
@@ -17,12 +18,38 @@
 
 }
 
+.thread-stats-container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    border-top: 1px solid rgb(100,100,100);
+}
+
+.thread-stats-container h6 {
+    margin: 0;
+    padding: 0;
+    margin: 0.2rem 0rem;
+    color: rgb(147, 147, 147);
+    font-weight: 100;
+    text-transform: none;
+}
+
 .thread-summary-container {
     /* border-bottom: 2px solid white; */
-    padding: 1rem;
-    width: 75%;
+    /* padding: 0,5rem; */
+    /* width: 75%; */
     margin: 0 auto;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
+    height: 100%;
+    width: 50%;
+    text-align: left;
+    padding: 0rem 0.5rem;
+
+}
+
+.thread-summary-container p {
+    padding: 0;
+    margin: 0;
 }
 
 .thread-messages-container {
@@ -32,6 +59,7 @@
     padding: 0rem;
     text-align: center;
     margin: 0;
+    padding-bottom:66px;
 }
 
 .thread-chat-container {
@@ -137,8 +165,14 @@
     justify-content: space-around;
     align-items: center; */
     /* padding: 1rem; */
+    width: 100%;
+    /* border: 1px solid rgb(50, 50, 50); */
+    border-left: 1px solid rgb(70, 70, 70);
+    text-align: left;
+    padding: 0rem 0.2rem;
     width: 50%;
-    border: 1px solid rgb(50, 50, 50);
+
+
 }
 
 .sentiment-bubbles {

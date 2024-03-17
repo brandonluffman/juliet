@@ -38,12 +38,6 @@ const Answer = () => {
             <div className='answer-container'>
               <h1>Trending Threads</h1>
               <div className='answer-threads-grid-container'>
-              <h2>Dev Testing</h2>
-              <div className='answer-threads-grid'>
-              {threads && threads.map((thread, i) => (
-                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={42} points={288} tags={thread.tags} id={thread.id} />
-              ))}
-              </div>
               <h2>Based on your preferences</h2>
               <div className='answer-threads-grid'>
               {threads && threads.map((thread, i) => (

@@ -204,7 +204,7 @@
   font-size:1rem;
   box-shadow: 1px 4px 8px rgba(20,20,20,0.2);
   text-align: left;
-  max-width:50%;
+  max-width:75%;
   width: auto;
   font-family: 'Helvetica Neue', sans serif;
 }
@@ -213,16 +213,54 @@
   background-color: #007bff;
   color: white;
   border-radius: 20px;
-  padding: 0.5rem 1rem;
+  padding: 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #007bff;
   font-weight: 700;
   cursor: pointer;
+  font-size: 1.5rem;
   transition: 0.2s ease all;
+  padding: 0.2rem;
+  width: 50px;
+  border: 1px solid white;
+
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
 }
 
 .chat-messages-response button:hover {
   background-color: transparent;
   color: #007bff;
+}
+
+.chat-messages-response .reddit-btn {
+  /* padding: 0.2rem; */
+  background-color: #FF5700;
+  padding: 0.2rem;
+  border: 1px solid white;
+
+}
+
+.chat-messages-response .youtube-btn {
+  background-color: #FF0000;
+  border: 1px solid white;
+
+}
+
+.chat-messages-response .google-btn {
+  /* padding: 0.2rem; */
+  background: linear-gradient(to right, #4285F4, #34A853, #FBBC05, #EA4335);
+  border: 1px solid white;
+
+
+}
+
+.chat-messages-response > .chat-messages-btns {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around !important;
 }
 
 @keyframes typing {

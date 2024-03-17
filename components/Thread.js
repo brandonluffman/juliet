@@ -6,19 +6,22 @@ import { supabase } from '../utils/supabaseClient';
 import { UserContext } from '../context/UserContext';
 
 const SentimentBubbles = () => {
-  const sentiments = [
-    { word: 'vibes', frequency: 5, sentiment: 'positive' },
-    { word: 'fire', frequency: 3, sentiment: 'positive' },
-    { word: 'best', frequency: 2, sentiment: 'positive' },
-    { word: 'downtown', frequency: 1, sentiment: 'neutral' },
-    { word: 'friends', frequency: 1, sentiment: 'positive' },
-  ];
+
+  const [sentiments, setSentiments] = useState([])
+  // const sentiments = [
+  //   { word: 'vibes', frequency: 5, sentiment: 'positive' },
+  //   { word: 'fire', frequency: 3, sentiment: 'positive' },
+  //   { word: 'best', frequency: 2, sentiment: 'positive' },
+  //   { word: 'downtown', frequency: 1, sentiment: 'neutral' },
+  //   { word: 'friends', frequency: 1, sentiment: 'positive' },
+  // ];
 
   return (
     <div className='sentiment-bubbles-container'>
-      <h4>Sentiment</h4>
+              <h6>Sentiment</h6>
+
       <div className='sentiment-bubbles'>
-      {sentiments.map((sentiment, index) => (
+      {sentiments && sentiments.map((sentiment, index) => (
         <div key={index} className={`sentiment-bubble ${sentiment.sentiment}`}>
           {sentiment.word} ({sentiment.frequency})
         </div>
@@ -78,7 +81,7 @@ const Thread = ({threadID}) => {
     const { user } = useContext(UserContext);
 
     useEffect(() => {
-      {threadID &&
+      if (threadID) {
       supabase
         .from('thread_comments')
         .select('*')
@@ -90,27 +93,32 @@ const Thread = ({threadID}) => {
             console.log('No Data')
           }
         });
+      } else {
+        console.log('Cantt find the thread')
       }
-  }, []);
+  }, [threadID]);
 
   useEffect(() => {
-    {threadID &&
-    supabase
+    if (threadID){
+
+       supabase
       .from('threads')
       .select('*')
       .eq('id', threadID)
       .single()
       .then(({ data, error }) => {
         if (data) {
-          console.log('Threads', data)
+          console.log('Threadd ---->', data)
           setThread(data);
           console.log('Thread State', thread)
         } else {
           console.log('No Data')
         }
       });
+    } else {
+      console.log('NoThread ID Found')
     }
-}, []);
+}, [threadID]);
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -150,13 +158,22 @@ const handleInputChange = (e) => {
     <div className='thread-container'>
       <h6>Thread</h6>
       <h2>{thread && thread.title}</h2>
+      <div className='thread-stats-container'>
       <div className='thread-summary-container'>
+        <h6>Summary</h6>
         <p>{thread && thread.summary}</p>
       </div>
+      <SentimentBubbles />
+      </div>
       <div className='thread-messages-container'>
-          {messages.map((message, i) => (
+        {messages.length > 0 ?
+          (messages.map((message, i) => (
             message && <ThreadChat key={message.id} message={message.content} user={user.id} />
-          ))}
+          ))):(
+            <div>Be the first to reply!</div>
+          )
+          }
+
       </div>
       {/* <div className={chatHistory.length < 1 ? 'search-form-initial' : 'search-form'}> */}
       <div className='search-form'>
@@ -165,7 +182,7 @@ const handleInputChange = (e) => {
           <textarea
             ref={textareaRef}
             className='searchInput'
-            placeholder="Search..."
+            placeholder="Comment..."
             value={query}
             onChange={handleInputChange}
             onKeyDown={(e) => {

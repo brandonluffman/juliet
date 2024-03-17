@@ -10,7 +10,6 @@ const Threads = () => {
         .from('threads')
         .select('*')
         .limit(5)
-
         .then(({ data, error }) => {
           if (data) {
             console.log('Threads', data)

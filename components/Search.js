@@ -1,12 +1,18 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import { BsArrowRight, BsDot } from 'react-icons/bs';
+import { BsArrowRight, BsCopy, BsDot, BsGoogle, BsOpticalAudio, BsQuestion, BsQuestionCircle, BsReddit, BsYoutube } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 import { supabase } from '../utils/supabaseClient';
 import { UserContext } from '../context/UserContext';
+import { AiFillSound, AiOutlineDislike } from 'react-icons/ai';
+import { FaRegPlayCircle } from 'react-icons/fa';
 
 const Search = ({ setChats }) => {
   const [query, setQuery] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+  const [expandedLoad, setExpandedLoad] = useState(false);
+  const [data, setData] = useState(null);
+
   const textareaRef = useRef(null);
   const router = useRouter();
   const { user, logout } = useContext(UserContext);
@@ -97,30 +103,41 @@ const Search = ({ setChats }) => {
   };
 
   const handleAskThePublic = async (query) => {
-    // Assuming you have a Supabase client instance and the user's ID is stored in a variable called userId
     const { data, error } = await supabase
     .from('threads')
     .insert([
       {
         title: query,
-        user_id: user.id, // Replace with the actual user ID variable
+        user_id: user.id,
       },
     ])
     .select('*');
 
-
-  
     if (error) {
       console.error('Error creating thread:', error);
       return;
     }
-  
-    // Assuming the returned data includes the id of the newly created thread
     const newThreadId = data[0].id;
-  
-    // Navigate to the new thread route with the thread ID as a path parameter
     router.push(`/thread/${newThreadId}`);
   };
+
+  const fetchData = async () => {
+    const response = await fetch('/api/data');
+    const jsonData = await response.json();
+    setData(jsonData);
+  };
+
+  const expandClick = () => {
+    // setExpanded(!expanded)
+
+    fetchData();
+
+
+  
+    if (!data) {
+      return <div>Loading...</div>;
+    }
+  }
 
   return (
     <div className={chatHistory.length < 1 ? 'search-container': 'search-container-chat'}>
@@ -140,9 +157,24 @@ const Search = ({ setChats }) => {
                       {message.response}
                       <br></br>
                       <br></br>
-                      <button className='' onClick={() => handleAskThePublic(message.query)}>Ask the Public</button>
-
-                      {/* Add additional elements here if needed */}
+                      <div className='chat-messages-btns'>
+                      <button className='google-btn' onClick={() => expandClick(index)}><BsGoogle /></button>
+                      <button className='reddit-btn' onClick={() => expandClick(index)}><BsReddit /></button>
+                      <button className='youtube-btn' onClick={() => expandClick(index)}><BsYoutube /></button>
+                      <button className='atp-btn' onClick={() => handleAskThePublic(message.query)}><BsQuestion /></button>
+                      </div>
+                      {expanded && (
+                          <div>
+                            Expanded
+                          </div>
+                        )}
+                             {data!=null && <pre>{JSON.stringify(data.message)}</pre>}
+                            <div>
+                              <AiFillSound />
+                              <BsCopy />
+                            <FaRegPlayCircle />
+                            <AiOutlineDislike />
+                            </div>
                     </p>
                   </div>
                 </div>

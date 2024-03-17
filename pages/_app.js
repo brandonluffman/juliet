@@ -10,6 +10,8 @@ import '../styles/login.css'
 import '../styles/loading.css'
 import '../styles/answer.css'
 import '../styles/discover.css'
+import '../styles/account.css'
+
 
 import NProgress from 'nprogress';
 import "nprogress/nprogress.css";

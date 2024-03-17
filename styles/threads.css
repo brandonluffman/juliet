@@ -1,6 +1,7 @@
 .threads-container {
     margin-left: 250px;
     text-align: center;
+    padding:10px 10px 100px 10px;
 }
 
 .threads-headers {
@@ -22,8 +23,18 @@
 .threads-vertical-grid {
    display: grid;
    gap:10px;
+   padding: 0rem 1rem;
 }
 
 .threads-vertical-grid > a {
     width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.threads-container div .answer-threads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 350px);
+    gap: 10px;
 }
