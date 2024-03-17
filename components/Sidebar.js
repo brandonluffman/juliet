@@ -36,6 +36,7 @@ const Sidebar = () => {
   }, [user]);
 
 const handleAddChat = () => {
+  if (user) {
   supabase
     .from('chats')
     .insert([{ name: 'New Chat', messages: [], user_id: user.id }])
@@ -49,6 +50,9 @@ const handleAddChat = () => {
         router.push(`/chat/${newChat.id}`);
       }
     });
+  } else {
+    router.push('/')
+  }
 };
 
   const handleDeleteChat = async (chatId) => {

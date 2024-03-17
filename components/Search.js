@@ -105,6 +105,7 @@ const Search = ({ setChats }) => {
   };
 
   const handleAskThePublic = async (query) => {
+    if (user)  {
     const { data, error } = await supabase
     .from('threads')
     .insert([
@@ -121,6 +122,9 @@ const Search = ({ setChats }) => {
     }
     const newThreadId = data[0].id;
     router.push(`/thread/${newThreadId}`);
+  } else {
+      alert('You must create an account to ask the public.')
+    }
   };
 
   const fetchData = async () => {
@@ -130,15 +134,15 @@ const Search = ({ setChats }) => {
   };
 
   const expandClick = () => {
-    // setExpanded(!expanded)
+    setExpanded(!expanded)
 
-    fetchData();
+    // fetchData();
 
 
   
-    if (!data) {
-      return <div>Loading...</div>;
-    }
+    // if (!data) {
+    //   return <div>Loading...</div>;
+    // }
   }
 
   return (
@@ -167,7 +171,7 @@ const Search = ({ setChats }) => {
                       </div>
                       {expanded && (
                           <div>
-                            Expanded
+                            **Insert URLS
                           </div>
                         )}
                              {data!=null && <pre>{JSON.stringify(data.message)}</pre>}
