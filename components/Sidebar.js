@@ -16,6 +16,11 @@ const Sidebar = () => {
   const [chats, setChats] = useState([]);
   const [newChatId, setNewChatId] = useState(null);
 
+  const currentPage = router.pathname;
+
+  console.log('Current page:', currentPage);
+
+
   useEffect(() => {
     const fetchChats = async () => {
       if (user) {
@@ -50,8 +55,11 @@ const handleAddChat = () => {
         router.push(`/chat/${newChat.id}`);
       }
     });
+  } else if (!user && currentPage == '/') {
+    alert('Please create an account to create & save chats')
   } else {
     router.push('/')
+
   }
 };
 
