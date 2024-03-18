@@ -168,7 +168,7 @@ const handleInputChange = (e) => {
       <div className='thread-messages-container'>
         {messages.length > 0 ?
           (messages.map((message, i) => (
-            message && <ThreadChat key={message.id} message={message.content} user={user.id} />
+            message && <ThreadChat key={message.id} message={message.content} user={message.user_id} />
           ))):(
             <div>Be the first to reply!</div>
           )
