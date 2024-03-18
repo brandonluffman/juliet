@@ -30,7 +30,7 @@ const Threads = () => {
           <h4>Local Threads</h4>
           <div className='threads-vertical-grid'>
           {threads && threads.map((thread, i) => (
-                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={42} points={288} tags={thread.tags} id={thread.id} />
+                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={thread.comment_count} points={288} tags={thread.tags} id={thread.id} />
           ))}
           </div>
           </div>
@@ -38,7 +38,7 @@ const Threads = () => {
           <h4>Global Threads</h4>
           <div className='threads-vertical-grid'>
           {threads && threads.map((thread, i) => (
-                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={42} points={288} tags={thread.tags} id={thread.id} />
+                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={thread.comment_count} points={288} tags={thread.tags} id={thread.id} />
           ))}
           </div>
         </div>
@@ -46,7 +46,7 @@ const Threads = () => {
         <h4>Threads For You</h4>
         <div className='answer-threads-grid'>
         {threads && threads.map((thread, i) => (
-                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={42} points={288} tags={thread.tags} id={thread.id} />
+                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={thread.comment_count} points={288} tags={thread.tags} id={thread.id} />
           ))}
           </div>
         </div>

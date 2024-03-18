@@ -86,7 +86,15 @@
 .sidebar .sidebar-chat-inbox li:first-of-type {
     border-top: 1px solid rgb(50,50,50);
     background-color: #007bff;
+    transition: 0.2s ease all;
 }
+
+.sidebar .sidebar-chat-inbox li:first-of-type:hover {
+    background-color: black;
+    color: #007bff;
+    /* border: 1px solid #007bff; */
+}
+
 .sidebar-chat-inbox Link {
     z-index:9999 !important;
     position: relative;

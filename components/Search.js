@@ -11,7 +11,11 @@ const Search = ({ setChats }) => {
   const [chatHistory, setChatHistory] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const [expandedLoad, setExpandedLoad] = useState(false);
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
+  const [data, setData] = useState({});
+
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const textareaRef = useRef(null);
   const router = useRouter();
@@ -47,7 +51,7 @@ const Search = ({ setChats }) => {
       if (!chatId && user) {
         const { data: newChat, error: newChatError } = await supabase
           .from('chats')
-          .insert([{ name: 'New Chat', messages: [], user_id: user.id }])
+          .insert([{ name: query.split(' ').slice(0, 4).join(' '), messages: [], user_id: user.id }])
           .single()
           .select();
   
@@ -61,6 +65,8 @@ const Search = ({ setChats }) => {
         setChatHistory(newChat.messages)
 
         router.push(`/chat/${currentChatId}`);
+        setChatHistory(newChat.messages)
+
       }
   
       // Add the query to the chat history immediately with a placeholder response
@@ -127,23 +133,63 @@ const Search = ({ setChats }) => {
     }
   };
 
-  const fetchData = async () => {
-    const response = await fetch('/api/data');
-    const jsonData = await response.json();
-    setData(jsonData);
+  // const handleExpandClick = async (query, source, index) => {
+  //   if (expandedIndex === index) {
+  //     // If the same button is clicked again, collapse the content
+  //     setExpanded(false);
+  //     setExpandedIndex(null);
+  //   } else {
+  //     // Expand the content for the clicked message
+  //     setExpanded(true);
+  //     setExpandedIndex(index);
+  //     const response = await fetch(`/api/search/${source}/${query}`);
+  //     const jsonData = await response.json();
+  //     setData(jsonData);
+  //   }
+  // };
+
+  // const handleExpandClick = async (query, source, index) => {
+  //   if (expanded && expandedIndex === index && data && data.source === source) {
+  //     // Collapse the content if the same button is clicked again
+  //     setExpanded(false);
+  //     setExpandedIndex(null);
+  //   } else {
+  //     // Show a loading spinner and fetch new results
+  //     setIsLoading(true);
+  //     setExpanded(true);
+  //     setExpandedIndex(index);
+  //     const response = await fetch(`/api/search/${source}/${query}`);
+  //     const jsonData = await response.json();
+  //     setData({ results: jsonData, source }); // Include the source in the data
+  //     setIsLoading(false);
+  //   }
+  // };
+  
+  const handleExpandClick = async (query, source, index) => {
+    if (expanded && expandedIndex === index && data[index] && data[index].source === source) {
+      // Collapse the content if the same button is clicked again
+      setExpanded(false);
+      setExpandedIndex(null);
+    } else {
+      // Show a loading spinner and fetch new results
+      setIsLoading(true);
+      setExpanded(true);
+      setExpandedIndex(index);
+      const response = await fetch(`/api/search/${source}/${query}`);
+      const jsonData = await response.json();
+      setData(prevData => ({
+        ...prevData,
+        [index]: { results: jsonData, source } // Store the results keyed by the message index
+      }));
+      setIsLoading(false);
+    }
   };
 
-  const expandClick = () => {
-    setExpanded(!expanded)
 
-    // fetchData();
-
-
-  
-    // if (!data) {
-    //   return <div>Loading...</div>;
-    // }
-  }
+  const extractUrl = (link) => {
+    const urlParams = new URLSearchParams(link.split('?')[1]);
+    return urlParams.get('url');
+  };
 
   return (
     <div className={chatHistory.length < 1 ? 'search-container': 'search-container-chat'}>
@@ -164,17 +210,37 @@ const Search = ({ setChats }) => {
                       <br></br>
                       <br></br>
                       <div className='chat-messages-btns'>
-                      <button className='google-btn' onClick={() => expandClick(index)}><BsGoogle /></button>
-                      <button className='reddit-btn' onClick={() => expandClick(index)}><BsReddit /></button>
-                      <button className='youtube-btn' onClick={() => expandClick(index)}><BsYoutube /></button>
+                      <button className='google-btn' onClick={() => handleExpandClick(message.query, 'google', index)}><BsGoogle /></button>
+                      <button className='reddit-btn' onClick={() => handleExpandClick(message.query, 'reddit', index)}><BsReddit /></button>
+                      <button className='youtube-btn' onClick={() => handleExpandClick(message.query, 'youtube', index)}><BsYoutube /></button>
                       <button className='atp-btn' onClick={() => handleAskThePublic(message.query)}><BsQuestion /></button>
                       </div>
-                      {expanded && (
-                          <div>
-                            **Insert URLS
-                          </div>
-                        )}
-                             {data!=null && <pre>{JSON.stringify(data.message)}</pre>}
+                      {/* {expanded && expandedIndex === index && (
+                              <div className='message-expanded-container'>
+                                {data && data.map((item, idx) => (
+                                  <div key={idx}>
+                                    <img src={item.faviconSrc} width={30} />
+                                      <a href={extractUrl(item.link)} target="_blank" rel="noopener noreferrer">{item.title}</a>
+                                  </div>
+                                ))}
+                              </div>
+                            )} */}
+{expanded && expandedIndex === index && (
+  <div className='message-expanded-container'>
+    {isLoading && expandedIndex === index ? (
+      <div>Loading...</div>
+    ) : (
+      data[index] && Array.isArray(data[index].results) && data[index].results.map((item, idx) => (
+        <div key={idx}>
+          <img src={item.faviconSrc} width={30} />
+          <a href={extractUrl(item.link)} target="_blank" rel="noopener noreferrer">
+            {item.title}
+          </a>
+        </div>
+      ))
+    )}
+  </div>
+)}
                             {/* <div>
                               <AiFillSound />
                               <BsCopy />

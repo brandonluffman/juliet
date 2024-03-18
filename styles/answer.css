@@ -71,6 +71,7 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    text-align: center;
 }
 
 .answer-tags {

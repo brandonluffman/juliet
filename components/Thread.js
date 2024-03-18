@@ -121,6 +121,7 @@ const Thread = ({threadID}) => {
 }, [threadID]);
 
 const handleSubmit = async (e) => {
+  if (user) {
   e.preventDefault();
   if (!query.trim()) return;
 
@@ -143,6 +144,9 @@ const handleSubmit = async (e) => {
   } else {
     console.error('No data returned after insert operation');
   }
+} else {
+  alert('Please sign in to comment on threads.')
+}
 };
 
 const handleInputChange = (e) => {
@@ -170,7 +174,7 @@ const handleInputChange = (e) => {
           (messages.map((message, i) => (
             message && <ThreadChat key={message.id} message={message.content} user={message.user_id} />
           ))):(
-            <div>Be the first to reply!</div>
+            <div className='thread-nomessages-container'>Be the first to reply!</div>
           )
           }
 

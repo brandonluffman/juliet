@@ -41,19 +41,19 @@ const Answer = () => {
               <h2>Based on your preferences</h2>
               <div className='answer-threads-grid'>
               {threads && threads.map((thread, i) => (
-                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={42} points={288} tags={thread.tags} id={thread.id} />
+                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={thread.comment_count} points={288} tags={thread.tags} id={thread.id} />
               ))}
               </div>
               <h2>Based on your location</h2>
               <div className='answer-threads-grid'>
               {threads && threads.map((thread, i) => (
-                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={42} points={288} tags={thread.tags} id={thread.id} />
+                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={thread.comment_count} points={288} tags={thread.tags} id={thread.id} />
               ))}
               </div>
               <h2>Based on your expertise</h2>
               <div className='answer-threads-grid'>
               {threads && threads.map((thread, i) => (
-                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={42} points={288} tags={thread.tags} id={thread.id} />
+                  <AnswerThread key={thread.id} title={thread.title} time={4} comments={thread.comment_count} points={288} tags={thread.tags} id={thread.id} />
               ))}
               </div>
               </div>

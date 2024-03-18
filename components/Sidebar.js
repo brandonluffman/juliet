@@ -101,13 +101,13 @@ const handleAddChat = () => {
         </div>
 
         <ul className='sidebar-chat-inbox'>
-        <li><Link href="/answer">Answer</Link></li>
+        <li><Link href="/answer">Threads for you</Link></li>
         {chats && chats.map((chat) => (
           (chat && 
           <li key={chat.id} className={router.query.chatId === chat?.id.toString() ? 'active-chat' : ''}>
 
             <Link href={`/chat/${chat?.id}`}>
-              {chat?.name}
+              {chat?.name}...
             </Link>
             <button onClick={() => handleDeleteChat(chat?.id)}><IoMdClose /></button> {/* Add a delete button */}
           </li>
