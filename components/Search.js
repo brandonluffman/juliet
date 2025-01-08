@@ -5,6 +5,7 @@ import { supabase } from '../utils/supabaseClient';
 import { UserContext } from '../context/UserContext';
 import { AiFillSound, AiOutlineDislike } from 'react-icons/ai';
 import { FaRegPlayCircle } from 'react-icons/fa';
+import Loading from './Loading';
 
 const Search = ({ setChats }) => {
   const [query, setQuery] = useState('');
@@ -15,7 +16,7 @@ const Search = ({ setChats }) => {
   const [data, setData] = useState({});
 
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const textareaRef = useRef(null);
   const router = useRouter();
@@ -73,6 +74,36 @@ const Search = ({ setChats }) => {
       const newMessage = { query, response: 'Thinking...' };
       setChatHistory((prevHistory) => [...prevHistory, newMessage]);
   
+      handleExpandClick(query, 'google', chatHistory.length);
+
+      // supabase
+      // .from('threads')
+      // .select('*')
+      // .then(({ data, error }) => {
+      //   if (data) {
+      //     console.log('Threads grabbed for chat', data.messages)
+      //     setChatHistory(data.messages);
+      //   } else {
+      //     console.log('No Data')
+      //   }
+      // });
+
+      const { data: threads, error: threadsError } = await supabase
+      .from('threads')
+      .select('*')
+      .limit(3);
+
+    if (threadsError) {
+      console.error('Error fetching threads:', threadsError);
+    } else {
+      console.log('Threads grabbed for chat', threads);
+      setChatHistory((prevHistory) => {
+        const updatedHistory = [...prevHistory];
+        updatedHistory[prevHistory.length - 1].threads = threads;
+        return updatedHistory;
+      });
+    }
+
       // Determine the API endpoint based on whether chatId is defined
       const apiEndpoint = currentChatId ? `/api/chats/${currentChatId}` : '/api/chats';
   
@@ -133,23 +164,10 @@ const Search = ({ setChats }) => {
     }
   };
 
-  // const handleExpandClick = async (query, source, index) => {
-  //   if (expandedIndex === index) {
-  //     // If the same button is clicked again, collapse the content
-  //     setExpanded(false);
-  //     setExpandedIndex(null);
-  //   } else {
-  //     // Expand the content for the clicked message
-  //     setExpanded(true);
-  //     setExpandedIndex(index);
-  //     const response = await fetch(`/api/search/${source}/${query}`);
-  //     const jsonData = await response.json();
-  //     setData(jsonData);
-  //   }
-  // };
 
+  
   // const handleExpandClick = async (query, source, index) => {
-  //   if (expanded && expandedIndex === index && data && data.source === source) {
+  //   if (expanded && expandedIndex === index && data[index] && data[index].source === source) {
   //     // Collapse the content if the same button is clicked again
   //     setExpanded(false);
   //     setExpandedIndex(null);
@@ -160,32 +178,25 @@ const Search = ({ setChats }) => {
   //     setExpandedIndex(index);
   //     const response = await fetch(`/api/search/${source}/${query}`);
   //     const jsonData = await response.json();
-  //     setData({ results: jsonData, source }); // Include the source in the data
+  //     setData(prevData => ({
+  //       ...prevData,
+  //       [index]: { results: jsonData, source } // Store the results keyed by the message index
+  //     }));
   //     setIsLoading(false);
   //   }
   // };
-  
+
   const handleExpandClick = async (query, source, index) => {
-    if (expanded && expandedIndex === index && data[index] && data[index].source === source) {
-      // Collapse the content if the same button is clicked again
-      setExpanded(false);
-      setExpandedIndex(null);
-    } else {
-      // Show a loading spinner and fetch new results
-      setIsLoading(true);
-      setExpanded(true);
-      setExpandedIndex(index);
-      const response = await fetch(`/api/search/${source}/${query}`);
-      const jsonData = await response.json();
-      setData(prevData => ({
-        ...prevData,
-        [index]: { results: jsonData, source } // Store the results keyed by the message index
-      }));
-      setIsLoading(false);
-    }
+    setIsLoading(true);
+    setExpandedIndex(index);
+    const response = await fetch(`/api/search/${source}/${query}`);
+    const jsonData = await response.json();
+    setData((prevData) => ({
+      ...prevData,
+      [index]: { results: jsonData, source },
+    }));
+    setIsLoading(false);
   };
-
-
   const extractUrl = (link) => {
     const urlParams = new URLSearchParams(link.split('?')[1]);
     return urlParams.get('url');
@@ -201,11 +212,12 @@ const Search = ({ setChats }) => {
               const message = typeof entry === 'string' ? JSON.parse(entry) : entry; // Only parse if entry is a string
               return (
                 <div key={index} className='chat-entry'>
-                  <div>
+                  <div className='query-div'>
                     <p className='chat-messages-message'>{message.query}</p>
                   </div>
                   <div>
                     <p className={`chat-messages-response ${index === chatHistory.length - 1 ? 'typing' : ''}`}>
+                      <div className='chat-messages-top-container'>
                       {message.response}
                       <br></br>
                       <br></br>
@@ -213,42 +225,67 @@ const Search = ({ setChats }) => {
                       <button className='google-btn' onClick={() => handleExpandClick(message.query, 'google', index)}><BsGoogle /></button>
                       <button className='reddit-btn' onClick={() => handleExpandClick(message.query, 'reddit', index)}><BsReddit /></button>
                       <button className='youtube-btn' onClick={() => handleExpandClick(message.query, 'youtube', index)}><BsYoutube /></button>
-                      <button className='atp-btn' onClick={() => handleAskThePublic(message.query)}><BsQuestion /></button>
+                      {/* <button className='atp-btn' onClick={() => handleAskThePublic(message.query)}><BsQuestion /></button> */}
                       </div>
-                      {/* {expanded && expandedIndex === index && (
-                              <div className='message-expanded-container'>
-                                {data && data.map((item, idx) => (
-                                  <div key={idx}>
-                                    <img src={item.faviconSrc} width={30} />
-                                      <a href={extractUrl(item.link)} target="_blank" rel="noopener noreferrer">{item.title}</a>
-                                  </div>
-                                ))}
-                              </div>
-                            )} */}
-{expanded && expandedIndex === index && (
-  <div className='message-expanded-container'>
-    {isLoading && expandedIndex === index ? (
-      <div>Loading...</div>
-    ) : (
-      data[index] && Array.isArray(data[index].results) && data[index].results.map((item, idx) => (
-        <div key={idx}>
-          <img src={item.faviconSrc} width={30} />
-          <a href={extractUrl(item.link)} target="_blank" rel="noopener noreferrer">
-            {item.title}
-          </a>
-        </div>
-      ))
-    )}
-  </div>
-)}
+
+                      <div className="message-expanded-container">
+                {isLoading && expandedIndex === index ? (
+                  <div className="loading-spinner-container">
+                    <Loading />
+                  </div>
+                ) : data[index] && Array.isArray(data[index].results) ? (
+                  data[index].results.map((item, idx) => (
+                    <div key={idx} className="">
+                      <img src={item.faviconSrc} width={30} />
+                      <a href={extractUrl(item.link)} target="_blank" rel="noopener noreferrer">
+                        {item.title}
+                      </a>
+                    </div>
+                  ))
+                ) : (
+                  <p>No results found</p>
+                )}
+              </div>
+              
+                    {/* {expanded && expandedIndex === index && (
+                      <div className='message-expanded-container'>
+                        {isLoading && expandedIndex === index ? (
+                          <div className='loading-spinner-container'><Loading /></div>
+                        ) : (
+                          data[index] && Array.isArray(data[index].results) && data[index].results.map((item, idx) => (
+                            <div key={idx} className=''>
+                              <img src={item.faviconSrc} width={30} />
+                              <a href={extractUrl(item.link)} target="_blank" rel="noopener noreferrer">
+                                {item.title}
+                              </a>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    )} */}
+                    </div>
                             {/* <div>
                               <AiFillSound />
                               <BsCopy />
                             <FaRegPlayCircle />
                             <AiOutlineDislike />
                             </div> */}
+                      <div className='chat-message-sentiment'>
+                        <h6>Related Threads</h6>
+                        <div className='sentiment-threads'>
+                            {message.threads && message.threads.map((thread, idx) => (
+                              <div key={idx}>
+                                <a href={`/thread/${thread.id}`}>{thread.title}</a>
+                              </div>
+                            ))}
+                          </div>
+                        <div className=''>
+                      <button className='atp-btn' onClick={() => handleAskThePublic(message.query)}>Ask the public <BsQuestion /></button>
+                      </div>
+                    </div>
                     </p>
                   </div>
+        
                 </div>
               );
             })}
